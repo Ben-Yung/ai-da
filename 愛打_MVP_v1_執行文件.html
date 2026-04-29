@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>愛打 MVP v1 — 執行流程文件（v2 更新版）</title>
+<title>愛打 MVP v1 — 執行流程文件（v3 最終版）</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,8 +14,6 @@
     line-height: 1.8;
   }
   .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
-
-  /* ── Header ── */
   header {
     text-align: center;
     padding: 60px 0 40px;
@@ -52,8 +50,6 @@
     font-size: 0.8em;
     font-weight: 700;
   }
-
-  /* ── Cards ── */
   .card {
     background: #12122a;
     border-radius: 12px;
@@ -89,8 +85,6 @@
     border-radius: 4px;
     font-size: 0.9em;
   }
-
-  /* ── Changelog ── */
   .changelog {
     background: #ffd70008;
     border: 1px solid #ffd70033;
@@ -109,8 +103,6 @@
     margin-bottom: 6px;
   }
   .changelog li::marker { color: #ffd700; }
-
-  /* ── Module Grid ── */
   .module-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -131,8 +123,6 @@
   .module-card .steps li { font-size: 0.85em; color: #888; margin-bottom: 3px; }
   .module-card .steps li::marker { color: #ffd700; }
   @media (max-width: 600px) { .module-grid { grid-template-columns: 1fr; } }
-
-  /* ── Rhyme Box ── */
   .rhyme-box {
     background: #1a0a2a;
     border: 1px solid #ffd70044;
@@ -141,19 +131,7 @@
     margin: 12px 0;
     font-style: italic;
   }
-  .rhyme-box .line {
-    padding: 4px 0;
-    font-size: 1em;
-    color: #ffd700;
-  }
-  .rhyme-box .beat {
-    color: #00d4ff;
-    font-style: normal;
-  }
-  .rhyme-box .gentle {
-    color: #ff88cc;
-    font-style: normal;
-  }
+  .rhyme-box .line { padding: 4px 0; font-size: 1em; color: #ffd700; }
   .rhyme-label {
     display: inline-block;
     font-size: 0.75em;
@@ -164,8 +142,6 @@
   }
   .rhyme-label.beat-label { background: #00d4ff22; color: #00d4ff; }
   .rhyme-label.heart-label { background: #ff88cc22; color: #ff88cc; }
-
-  /* ── Tech Stack ── */
   .tech-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; }
   .tech-tag {
     background: #00d4ff11;
@@ -176,8 +152,6 @@
     color: #00d4ff;
   }
   .tech-tag strong { color: #fff; }
-
-  /* ── Table ── */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -197,8 +171,6 @@
     color: #bbb;
   }
   tr:hover td { background: #00d4ff08; }
-
-  /* ── Section titles ── */
   .section-title {
     font-size: 1.8em;
     font-weight: 700;
@@ -207,8 +179,6 @@
     border-bottom: 2px solid #ffd70044;
     color: #fff;
   }
-
-  /* ── Footer ── */
   footer {
     text-align: center;
     padding: 40px 0;
@@ -217,41 +187,38 @@
     border-top: 1px solid #222;
     margin-top: 40px;
   }
-
-  /* ── Comparison Table ── */
-  .compare { width: 100%; margin: 12px 0; }
-  .compare th { text-align: center; }
-  .compare th.beat { background: #ff444422; color: #ff4444; }
-  .compare th.hug { background: #ff88cc22; color: #ff88cc; }
-  .compare td:first-child { color: #ffd700; font-weight: 700; }
-  .compare td.beat-col { color: #ff6666; }
-  .compare td.hug-col { color: #ff99cc; }
+  .new-feature {
+    background: #00ff8811;
+    border: 1px solid #00ff8844;
+  }
+  .new-feature h2 { color: #00ff88; }
 </style>
 </head>
 <body>
 
 <div class="container">
 
-<!-- ══════ HEADER ══════ -->
 <header>
-  <span class="update-badge">v2 更新版</span>
+  <span class="update-badge">v3 最終版</span>
   <h1>👺 愛打 MVP v1</h1>
   <p class="sub">打者愛也 — 執行流程文件</p>
   <span class="tag">⚡ 閃電 × 快閃軟件客</span>
-  <span class="tag" style="margin-left:8px">📅 2026-04-29 · v2</span>
+  <span class="tag" style="margin-left:8px">📅 2026-04-29 · v3</span>
 </header>
 
 <!-- ══════ CHANGELOG ══════ -->
 <div class="changelog">
-  <h3>🔄 v2 更新內容（第二輪討論後）</h3>
+  <h3>🔄 v3 最終更新</h3>
   <ol style="padding-left:20px">
-    <li><strong>口訣系統加入</strong> — 打小人配合傳統口訣節奏，每句口訣對應一個拍擊</li>
-    <li><strong>Splash 動畫延長</strong> — 配合口訣 timing，片長由 5s → ~12s</li>
-    <li><strong>口訣擴充預留</strong> — 日後支援用戶自創 + 多語言（英文、泰文等）</li>
-    <li><strong>愛的祝福 → 愛的抱抱</strong> — 改名，玩法改為拍打遊戲（同引擎），善意道具（羽毛/唇印/玫瑰），擊中出心心</li>
-    <li><strong>愛抱自創口訣</strong> — 由閃電創作祝福版口訣（已完成），有時限/計分/成功失敗</li>
-    <li><strong>愛的祝福保留 Phase 2</strong> — 作為玩家之間社交互動（非遊戲），MVP 後再做</li>
-    <li><strong>音樂配合口訣</strong> — Web Audio API 即時生成背景節奏，打小人重音，抱抱柔和，玩家可選</li>
+    <li><strong>口訣系統</strong> — 打小人傳統咒罵口訣，抱抱自創祝福口訣</li>
+    <li><strong>Splash 動畫 ~12 秒</strong> — 配合口訣節奏顯示</li>
+    <li><strong>口訣擴充預留</strong> — 日後用戶自創 + 多語言</li>
+    <li><strong>愛的祝福 → 愛的抱抱</strong> — 同一引擎，善意道具</li>
+    <li><strong>抱抱自創口訣 + 計分</strong> — 時限/計分/成功失敗</li>
+    <li><strong>愛的祝福 Phase 2</strong> — 社交互動，非遊戲</li>
+    <li><strong>Web Audio API 音樂</strong> — 打重音，抱柔和，可開關</li>
+    <li><strong>🏷️ 紙人命名系統</strong> — 玩家可為紙人自訂稱呼，相同紙人不同用戶可有不同名字，記錄存 DB（新增）</li>
+    <li>其餘留待 Phase 2</li>
   </ol>
 </div>
 
@@ -260,240 +227,140 @@
   <h2>📋 專案概覽</h2>
   <p>將香港「打小人」傳統習俗轉化為 Web 社交娛樂平台 MVP。</p>
   <p><strong>打者愛也</strong> — 兩個核心遊戲體驗：發洩式「打小人」＋ 暖心「愛的抱抱」。</p>
-  <p><strong>同一遊戲引擎，兩種主題</strong> — 打小人用傳統口訣 + 重音 beats；愛的抱抱用祝福口訣 + 柔和音效。</p>
+  <p><strong>口訣節奏 + 音樂同步 + 紙人命名</strong> — 三層互動體驗。</p>
 </div>
 
 <!-- ══════ GAME COMPARISON ══════ -->
 <h2 class="section-title">🎮 兩大遊戲模組對比</h2>
 
 <div class="card">
-  <table class="compare">
-    <tr>
-      <th style="width:20%"></th>
-      <th class="beat" style="width:40%">👺 打小人</th>
-      <th class="hug" style="width:40%">❤️ 愛的抱抱</th>
-    </tr>
-    <tr>
-      <td>目的</td>
-      <td class="beat-col">發洩、驅霉運</td>
-      <td class="hug-col">送祝福、正能量</td>
-    </tr>
-    <tr>
-      <td>口訣</td>
-      <td class="beat-col">傳統廣東話咒罵</td>
-      <td class="hug-col">⚡ 自創祝福口訣</td>
-    </tr>
-    <tr>
-      <td>工具</td>
-      <td class="beat-col">拖鞋、棍棒、老虎鉗</td>
-      <td class="hug-col">羽毛、唇印、玫瑰</td>
-    </tr>
-    <tr>
-      <td>擊中效果</td>
-      <td class="beat-col">火光、碎裂、⚡</td>
-      <td class="hug-col">心心、花瓣、💕</td>
-    </tr>
-    <tr>
-      <td>音樂風格</td>
-      <td class="beat-col">重低音 beats 🥁</td>
-      <td class="hug-col">柔和鈴聲/鋼琴 🔔</td>
-    </tr>
-    <tr>
-      <td>時限</td>
-      <td class="beat-col">30 秒</td>
-      <td class="beat-col">30 秒</td>
-    </tr>
-    <tr>
-      <td>計分</td>
-      <td class="beat-col">連擊加分 + 暴擊</td>
-      <td class="beat-col">連擊加分 + 心心 combo</td>
-    </tr>
-    <tr>
-      <td>成功</td>
-      <td class="beat-col">紙人碎裂 + 彩帶</td>
-      <td class="hug-col">紙人發光 + 大心心</td>
-    </tr>
-    <tr>
-      <td>失敗</td>
-      <td class="beat-col">紙人嘲笑 + 鬼臉</td>
-      <td class="hug-col">紙人扁嘴 + 嬲嬲</td>
-    </tr>
-    <tr>
-      <td>引擎</td>
-      <td colspan="2" style="text-align:center;color:#ffd700">✅ 同一套 Canvas 遊戲引擎，換 theme</td>
-    </tr>
+  <table style="width:100%">
+    <tr><th style="width:20%"></th><th style="width:40%;background:#ff444422;color:#ff4444">👺 打小人</th><th style="width:40%;background:#ff88cc22;color:#ff88cc">❤️ 愛的抱抱</th></tr>
+    <tr><td><strong>目的</strong></td><td>發洩、驅霉運</td><td>送祝福、正能量</td></tr>
+    <tr><td><strong>口訣</strong></td><td>傳統廣東話咒罵</td><td>⚡ 自創祝福口訣</td></tr>
+    <tr><td><strong>工具</strong></td><td>拖鞋、棍棒、老虎鉗</td><td>羽毛、唇印、玫瑰</td></tr>
+    <tr><td><strong>擊中效果</strong></td><td>火光、碎裂 ⚡</td><td>心心、花瓣 💕</td></tr>
+    <tr><td><strong>音樂</strong></td><td>重低音 beats 🥁</td><td>柔和鈴聲/鋼琴 🔔</td></tr>
+    <tr><td><strong>時限</strong></td><td>30 秒</td><td>30 秒</td></tr>
+    <tr><td><strong>計分</strong></td><td>連擊加分 + 暴擊</td><td>心心 combo + 連擊</td></tr>
+    <tr><td><strong>成功</strong></td><td>紙人碎裂 + 彩帶</td><td>紙人發光 + 大心心</td></tr>
+    <tr><td><strong>失敗</strong></td><td>紙人嘲笑 + 鬼臉</td><td>紙人扁嘴 + 嬲嬲</td></tr>
+    <tr><td style="color:#ffd700;font-weight:700">引擎</td><td colspan="2" style="text-align:center;color:#ffd700">同一套 Canvas 遊戲引擎，換 theme</td></tr>
   </table>
 </div>
 
+<!-- ══════ NAMING SYSTEM ══════ -->
+<h2 class="section-title">🏷️ 紙人命名系統（最新新增）</h2>
+
+<div class="card new-feature">
+  <h2>🏷️ 打/抱之前先改名</h2>
+  <p><strong>概念：</strong>玩家揀選紙人後，可以輸入一個自訂稱呼。之後每次見到同一張紙人，都顯示佢改嘅名。</p>
+
+  <div style="background:#0a1a0a;border-radius:8px;padding:16px;margin:12px 0;">
+    <p style="color:#00ff88;font-weight:700;">例子：</p>
+    <p style="color:#ccc;">同一張「驚蟄紙人」👇</p>
+    <p style="color:#ff6666;">你叫佢 → <strong>「死婆」</strong> ✅</p>
+    <p style="color:#ff99cc;">你朋友叫佢 → <strong>「老闆」</strong> ✅</p>
+    <p style="color:#ffd700;">兩位用戶睇到唔同名，各自獨立記錄</p>
+  </div>
+
+  <table>
+    <tr><th>流程</th><th>說明</th></tr>
+    <tr><td>① 揀紙人</td><td>從預設紙人庫揀一款</td></tr>
+    <tr><td>② 輸入稱呼</td><td>「請輸入你想打/抱嘅名：」</td></tr>
+    <tr><td>③ 開始遊戲</td><td>遊戲中紙人顯示自訂名 + 口訣自動用人名</td></tr>
+    <tr><td>④ 記存</td><td>下次揀同一紙人，自動顯示上次嘅名</td></tr>
+    <tr><td>⑤ 可修改</td><td>想改名隨時重新輸入</td></tr>
+  </table>
+
+  <p style="margin-top:8px;color:#888;font-size:0.85em">* 口訣自動代入人名：「打你個〈名〉頭，等你一世唔出頭」</p>
+</div>
+
 <!-- ══════ RHYME SYSTEM ══════ -->
-<h2 class="section-title">🎤 口訣系統（新增重點）</h2>
+<h2 class="section-title">🎤 口訣系統</h2>
 
 <div class="card">
   <h2>👺 打小人 — 傳統口訣</h2>
-  <p>每句口訣對應一次拍打，配合重音 beats。</p>
   <div class="rhyme-box">
-    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span><span class="beat">打你個小人頭</span>，等你一世唔出頭</div>
-    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span><span class="beat">打你個小人手</span>，等你一世冇朋友</div>
-    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span><span class="beat">打你個小人眼</span>，等你一世冇人睇</div>
-    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span><span class="beat">打你個小人腳</span>，等你一世冇鞋著</div>
+    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span>打你個<span style="color:#ffd700;">{名}</span>頭，等你一世唔出頭</div>
+    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span>打你個<span style="color:#ffd700;">{名}</span>手，等你一世冇朋友</div>
+    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span>打你個<span style="color:#ffd700;">{名}</span>眼，等你一世冇人睇</div>
+    <div class="line"><span class="rhyme-label beat-label">🥁 重音</span>打你個<span style="color:#ffd700;">{名}</span>腳，等你一世冇鞋著</div>
   </div>
 </div>
 
 <div class="card">
   <h2>❤️ 愛的抱抱 — ⚡ 自創祝福口訣</h2>
-  <p>每句祝福口訣對應一次「抱抱」，配合柔和音效。</p>
   <div class="rhyme-box">
-    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span><span class="gentle">錫錫你個頭</span>，煩惱全部走</div>
-    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span><span class="gentle">錫錫你對手</span>，好運跟你走</div>
-    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span><span class="gentle">錫錫你一雙眼</span>，日日都燦爛</div>
-    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span><span class="gentle">錫錫你一對腳</span>，路路都快樂</div>
+    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span>錫錫<span style="color:#ffd700;">{名}</span>個頭，煩惱全部走</div>
+    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span>錫錫<span style="color:#ffd700;">{名}</span>對手，好運跟你走</div>
+    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span>錫錫<span style="color:#ffd700;">{名}</span>一雙眼，日日都燦爛</div>
+    <div class="line"><span class="rhyme-label heart-label">🎀 柔和</span>錫錫<span style="color:#ffd700;">{名}</span>一對腳，路路都快樂</div>
   </div>
 </div>
 
+<!-- ══════ SPLASH ══════ -->
+<h2 class="section-title">🎬 Splash 動畫（~12 秒）</h2>
 <div class="card">
-  <h2>🗂️ 口訣系統架構（日後擴充）</h2>
   <table>
-    <tr><th>功能</th><th>MVP v1</th><th>Phase 2+</th></tr>
-    <tr><td>打小人口訣</td><td>✅ 傳統廣東話（系統預設）</td><td>✅ 用戶自創</td></tr>
-    <tr><td>愛的抱抱口訣</td><td>✅ ⚡自創祝福版（系統預設）</td><td>✅ 用戶自創</td></tr>
-    <tr><td>多語言</td><td>❌</td><td>✅ 英文、泰文等</td></tr>
-    <tr><td>玩家選取</td><td>✅ 兩個模式各自預設</td><td>✅ 口訣庫自由揀</td></tr>
+    <tr><th>時間</th><th>場景</th></tr>
+    <tr><td>0-1.5s</td><td>⚡ 閃電劃過夜空</td></tr>
+    <tr><td>1.5-3s</td><td>「愛打」Logo 浮現（金色發光）</td></tr>
+    <tr><td>3-4s</td><td>紙人剪影飄入</td></tr>
+    <tr><td>4-6s</td><td>打小人口訣 2 句顯示</td></tr>
+    <tr><td>6-8s</td><td>愛的抱抱口訣 2 句顯示</td></tr>
+    <tr><td>8-10s</td><td>打 mode + 抱 mode 動畫交替</td></tr>
+    <tr><td>10-12s</td><td>Logo + 習俗簡介 → fade out → 主頁</td></tr>
   </table>
-</div>
-
-<!-- ══════ MUSIC SYSTEM ══════ -->
-<h2 class="section-title">🎵 音樂系統（新增重點）</h2>
-
-<div class="card">
-  <h2>⚡ Web Audio API 即時生成</h2>
-  <table>
-    <tr><th>模式</th><th>風格</th><th>實現方式</th></tr>
-    <tr><td>👺 打小人</td><td>重低音 beats 🥁</td><td>OscillatorNode 低頻 + 每句口訣一個重拍</td></tr>
-    <tr><td>❤️ 愛的抱抱</td><td>柔和鈴聲/鋼琴 🔔</td><td>OscillatorNode 高頻 + 上行音階</td></tr>
-    <tr><td>播放時機</td><td>遊戲開始 → 配合口訣顯示</td><td>每擊中一次觸發對應音效</td></tr>
-    <tr><td>玩家控制</td><td>✅ 可選開/關</td><td>設定頁面 toggle</td></tr>
-  </ul>
-  <p style="margin-top:8px;color:#888;font-size:0.85em">* 唔使任何 audio file，browser 原生生成，零 loading time。</p>
-</div>
-
-<!-- ══════ SPLASH ANIMATION ══════ -->
-<h2 class="section-title">🎬 Splash 動畫（已更新）</h2>
-
-<div class="card">
-  <h2>⚡ 配合口訣 — 片長 ~12 秒</h2>
-  <table>
-    <tr><th>時間</th><th>場景</th><th>口訣配合</th></tr>
-    <tr><td>0-1.5s</td><td>⚡ 閃電劃過夜空</td><td>—</td></tr>
-    <tr><td>1.5-3s</td><td>「愛打」Logo 浮現（金色發光）</td><td>—</td></tr>
-    <tr><td>3-4s</td><td>傳統紙人剪影飄入</td><td>—</td></tr>
-    <tr><td>4-6s</td><td>口訣逐句顯示（打小人篇）</td><td>「打你個小人頭⋯」2 句</td></tr>
-    <tr><td>6-8s</td><td>口訣繼續（抱抱篇預告）</td><td>「錫錫你個頭⋯」2 句</td></tr>
-    <tr><td>8-10s</td><td>打 mode + 抱 mode 動畫交替</td><td>⚡ vs 💕 畫面切換</td></tr>
-    <tr><td>10-12s</td><td>Logo + 底部習俗簡介</td><td>→ fade out → 主頁</td></tr>
-  </table>
-  <p style="margin-top:8px;color:#ffd700;font-size:0.9em">📌 用戶可 click「跳過」</p>
-  <p style="color:#888;font-size:0.85em">📌 Session 內不重播</p>
+  <p style="margin-top:8px;color:#888;font-size:0.85em">可跳過 · session 內不重播</p>
 </div>
 
 <!-- ══════ MODULES ══════ -->
-<h2 class="section-title">🧩 MVP 功能模組（已更新）</h2>
-
+<h2 class="section-title">🧩 MVP 功能模組</h2>
 <div class="module-grid">
+  <div class="module-card mvp"><h3>🔐 模組 1 — 用戶登記</h3><p>JWT + bcrypt + device session</p><ul class="steps"><li>註冊 username + password</li><li>同一 device 直入主頁</li></ul></div>
+  <div class="module-card mvp"><h3>🎬 模組 2 — Splash 動畫</h3><p>~12 秒，配合口訣節奏</p><ul class="steps"><li>⚡→Logo→紙人→口訣</li><li>可跳過，session 不重播</li></ul></div>
+  <div class="module-card mvp"><h3>🏠 模組 3 — 主頁導航</h3><p>大 icon menu</p><ul class="steps"><li>👺 打小人 · ❤️ 抱抱</li><li>📖 典故 · 👤 檔案 · ⚙️ 設定</li></ul></div>
+  <div class="module-card mvp"><h3>👺 模組 4a — 打小人</h3><p>拍打遊戲 + 傳統口訣</p><ul class="steps"><li>Canvas 拍打·口訣同步</li><li>beats · 3 工具·30 秒·計分</li></ul></div>
+  <div class="module-card mvp"><h3>❤️ 模組 4b — 愛的抱抱</h3><p>拍打遊戲 + 祝福口訣</p><ul class="steps"><li>同一引擎·換 theme</li><li>3 工具·柔和音·心心計分</li></ul></div>
+  <div class="module-card phase2"><h3>💌 愛的祝福 <span class="phase">[Phase 2]</span></h3><p>社交互動非遊戲</p><ul class="steps"><li>玩家互送祝福·祝福卡</li></ul></div>
+  <div class="module-card mvp"><h3>🖼️ 模組 5 — 預設紙人</h3><p>不上傳，JSON config</p><ul class="steps"><li>6-8 款（傳統+漫畫）</li></ul></div>
+  <div class="module-card mvp"><h3>🎵 模組 6 — 音樂系統</h3><p>Web Audio API</p><ul class="steps"><li>打重音·抱柔和</li><li>玩家可開關</li></ul></div>
+  <div class="module-card mvp"><h3>🏷️ 模組 7 — 紙人命名</h3><p>玩家自訂稱呼</p><ul class="steps"><li>打/抱前輸入名字</li><li>記存 DB，下次重現</li></ul></div>
+</div>
 
-  <div class="module-card mvp">
-    <h3>🔐 模組 1 — 用戶登記登入</h3>
-    <p>JWT token + device session</p>
-    <ul class="steps">
-      <li>註冊：username + password</li>
-      <li>passlib + bcrypt hash 密碼</li>
-      <li>同一 device 直入主頁</li>
-      <li>Token 過期 → 重新登入</li>
-    </ul>
-  </div>
+<!-- ══════ DB ══════ -->
+<h2 class="section-title">🗄️ 資料庫設計</h2>
+<div class="card">
+  <table>
+    <tr><th>Table</th><th>用途</th><th>主要欄位</th></tr>
+    <tr><td><code>users</code></td><td>用戶資料</td><td>id, username, password_hash (bcrypt)</td></tr>
+    <tr><td><code>game_sessions</code></td><td>遊戲記錄</td><td>id, user_id, mode, score, tool, result</td></tr>
+    <tr><td><code>doll_names</code></td><td>🏷️ 紙人自訂稱呼</td><td>id, user_id, doll_id, custom_name</td></tr>
+    <tr><td><code>blessings</code></td><td>祝福記錄</td><td>id, user_id, message, paper_doll_id</td></tr>
+    <tr><td><code>tools</code></td><td>拍打工具</td><td>id, name, icon, mode, power</td></tr>
+  </table>
+  <p style="margin-top:8px;color:#888;font-size:0.85em">* 紙人用 JSON config · Render 免費 PostgreSQL 1GB</p>
+</div>
 
-  <div class="module-card mvp">
-    <h3>🎬 模組 2 — Splash 動畫</h3>
-    <p>~12 秒，配合口訣節奏</p>
-    <ul class="steps">
-      <li>⚡ 閃電 → Logo → 紙人</li>
-      <li>口訣逐句顯示（打+抱預告）</li>
-      <li>底部習俗簡介</li>
-      <li>可跳過，session 不重播</li>
-    </ul>
-  </div>
-
-  <div class="module-card mvp">
-    <h3>🏠 模組 3 — 主頁 Icon 導航</h3>
-    <p>大 icon 式 menu</p>
-    <ul class="steps">
-      <li>👺 打小人 → 遊戲</li>
-      <li>❤️ 愛的抱抱 → 遊戲</li>
-      <li>📖 習俗典故 → 文化介紹</li>
-      <li>👤 個人檔案</li>
-      <li>⚙️ 設定（音效開關等）</li>
-    </ul>
-  </div>
-
-  <div class="module-card mvp">
-    <h3>👺 模組 4a — 打小人</h3>
-    <p>拍打遊戲 + 傳統口訣 + 重音</p>
-    <ul class="steps">
-      <li>Canvas 點擊拍打</li>
-      <li>口訣同步顯示 + beats</li>
-      <li>3 款工具（拖鞋/棍棒/鉗）</li>
-      <li>30 秒限時·連擊計分</li>
-      <li>成功/失敗動畫</li>
-    </ul>
-  </div>
-
-  <div class="module-card mvp">
-    <h3>❤️ 模組 4b — 愛的抱抱</h3>
-    <p>拍打遊戲 + 祝福口訣 + 柔和音</p>
-    <ul class="steps">
-      <li>同一引擎，換 theme</li>
-      <li>自創祝福口訣同步</li>
-      <li>3 款工具（羽毛/唇印/玫瑰）</li>
-      <li>30 秒限時·心心計分</li>
-      <li>成功/失敗動畫</li>
-    </ul>
-  </div>
-
-  <div class="module-card phase2">
-    <h3>💌 模組 4c — 愛的祝福 <span class="phase">[Phase 2]</span></h3>
-    <p>社交互動，非遊戲</p>
-    <ul class="steps">
-      <li>玩家之間送祝福</li>
-      <li>手寫祝福卡</li>
-      <li>MVP 後再做</li>
-    </ul>
-  </div>
-
-  <div class="module-card mvp">
-    <h3>🖼️ 模組 5 — 預設紙人</h3>
-    <p>不上傳，全部系統提供</p>
-    <ul class="steps">
-      <li>6-8 款（傳統 + 漫畫）</li>
-      <li>用 JSON config，唔使 DB table</li>
-      <li>兩種 mode 各自款式</li>
-    </ul>
-  </div>
-
-  <div class="module-card mvp">
-    <h3>🎵 模組 6 — 音樂系統</h3>
-    <p>Web Audio API 即時生成</p>
-    <ul class="steps">
-      <li>打小人：重低音 beats 🥁</li>
-      <li>愛的抱抱：柔和鈴聲 🔔</li>
-      <li>每句口訣對應一拍</li>
-      <li>玩家可開關</li>
-    </ul>
-  </div>
-
+<!-- ══════ SCHEDULE ══════ -->
+<h2 class="section-title">📅 開發時程 ~14-17 日</h2>
+<div class="card">
+  <table>
+    <tr><th>階段</th><th>內容</th><th>時間</th></tr>
+    <tr><td>🔧 Setup</td><td>專案初始化 + Render + DB</td><td>1-2 日</td></tr>
+    <tr><td>🔐 Auth</td><td>註冊/登入 + JWT + bcrypt</td><td>1-2 日</td></tr>
+    <tr><td>🎬 Splash</td><td>~12 秒動畫 + 口訣</td><td>2 日</td></tr>
+    <tr><td>🏠 主頁</td><td>Icon 導航 + UI</td><td>1 日</td></tr>
+    <tr><td>👺 打小人</td><td>引擎 + 口訣 + beats + 工具</td><td>4 日</td></tr>
+    <tr><td>❤️ 愛的抱抱</td><td>換 theme + 祝福口訣 + 柔和音</td><td>2 日</td></tr>
+    <tr><td>🎵 音樂 + 🏷️ 命名</td><td>Web Audio + 紙人稱呼</td><td>1 日</td></tr>
+    <tr><td>🧪 測試修正</td><td>整合測試 + Bug fix + 打磨</td><td>2 日</td></tr>
+  </table>
 </div>
 
 <!-- ══════ TOOLS ══════ -->
 <h2 class="section-title">🛠️ 工具系統</h2>
-
 <div class="card">
   <table>
     <tr><th>模式</th><th>工具</th><th>效果</th></tr>
@@ -501,60 +368,26 @@
     <tr><td>🏏 棍棒</td><td>範圍中，威力中</td></tr>
     <tr><td>🦀 老虎鉗</td><td>精準打擊，高暴擊</td></tr>
     <tr><td rowspan="3">❤️ 愛的抱抱</td><td>🪶 羽毛</td><td>輕柔飄落，小愛心</td></tr>
-    <tr><td>💋 唇印</td><td>中咗出紅色唇印 + 大心心</td></tr>
-    <tr><td>🌹 玫瑰</td><td>花瓣紛飛，浪漫效果</td></tr>
+    <tr><td>💋 唇印</td><td>大心心效果</td></tr>
+    <tr><td>🌹 玫瑰</td><td>花瓣紛飛浪漫</td></tr>
   </table>
 </div>
 
-<!-- ══════ INFRASTRUCTURE ══════ -->
-<h2 class="section-title">🔧 基礎建設</h2>
-
+<!-- ══════ PHASE 2 ══════ -->
+<h2 class="section-title">📋 Phase 2 預留（之後再做）</h2>
 <div class="card">
-  <table>
-    <tr><th>項目</th><th>內容</th></tr>
-    <tr><td>Hosting</td><td>Render.com 免費方案 — 750h/月（24/7 夠用）</td></tr>
-    <tr><td>URL</td><td><code>https://ai-da.onrender.com</code></td></tr>
-    <tr><td>Database</td><td>PostgreSQL — <code>ai_da_db</code>（Render 內建免費 1GB）</td></tr>
-    <tr><td>後端</td><td>Python FastAPI + Uvicorn + WebSocket</td></tr>
-    <tr><td>前端</td><td>Vanilla JS + Canvas API（零框架）</td></tr>
-  </table>
+  <ul>
+    <li>💌 愛的祝福 — 玩家之間社交互動</li>
+    <li>🗂️ 口訣自創功能</li>
+    <li>🌐 多語言支援（英文、泰文等）</li>
+    <li>🖼️ 用戶上傳紙人 + 漫畫化</li>
+    <li>👥 群組功能 + 共打模式</li>
+    <li>🏪 紙人商店 + 道具收費</li>
+  </ul>
 </div>
 
-<!-- ══════ DB ══════ -->
-<h2 class="section-title">🗄️ 資料庫設計（MVP）</h2>
-
-<div class="card">
-  <table>
-    <tr><th>Table</th><th>用途</th><th>主要欄位</th></tr>
-    <tr><td><code>users</code></td><td>用戶資料</td><td>id, username, email, password_hash (bcrypt), created_at</td></tr>
-    <tr><td><code>game_sessions</code></td><td>遊戲記錄</td><td>id, user_id, mode (beat/hug), score, combo, tool, difficulty, result, played_at</td></tr>
-    <tr><td><code>blessings</code></td><td>祝福記錄（抱抱用）</td><td>id, user_id, message, paper_doll_id, created_at</td></tr>
-    <tr><td><code>tools</code></td><td>拍打工具</td><td>id, name, icon_path, mode (beat/hug), power, range</td></tr>
-  </table>
-  <p style="margin-top:8px;color:#888;font-size:0.85em">* 紙人用 JSON config，唔開 table。工具 phase 2 先加更多。</p>
-</div>
-
-<!-- ══════ SCHEDULE ══════ -->
-<h2 class="section-title">📅 開發時程</h2>
-
-<div class="card">
-  <table>
-    <tr><th>階段</th><th>內容</th><th>預估</th></tr>
-    <tr><td>🔧 Setup</td><td>專案初始化 + Render 部署 + DB schema</td><td>1-2 日</td></tr>
-    <tr><td>🔐 Auth</td><td>註冊/登入 + JWT + bcrypt</td><td>1-2 日</td></tr>
-    <tr><td>🎬 Splash</td><td>~12 秒動畫 + 口訣配合</td><td>2 日</td></tr>
-    <tr><td>🏠 主頁</td><td>Icon 導航 + UI 框架</td><td>1 日</td></tr>
-    <tr><td>👺 打小人 game</td><td>引擎 + 口訣同步 + beats + 工具</td><td>4 日</td></tr>
-    <tr><td>❤️ 愛的抱抱 game</td><td>換 theme + 祝福口訣 + 柔和音</td><td>2 日</td></tr>
-    <tr><td>🎵 音樂系統</td><td>Web Audio API beats + 控制</td><td>1 日</td></tr>
-    <tr><td>🧪 測試修正</td><td>整合測試 + Bug fix + 打磨</td><td>2 日</td></tr>
-    <tr><td><strong>總計</strong></td><td></td><td><strong>~14-17 日</strong></td></tr>
-  </table>
-</div>
-
-<!-- ══════ FOOTER ══════ -->
 <footer>
-  ⚡ 由 閃電 為 快閃軟件客 製作 · 文件版本 v2.0<br>
+  ⚡ 由 閃電 為 快閃軟件客 製作 · 文件版本 v3.0（最終版）<br>
   <span style="color:#444">GitHub: github.com/Ben-Yung/ai-da</span>
 </footer>
 
