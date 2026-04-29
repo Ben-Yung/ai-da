@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愛打 MVP v1 — 執行流程文件</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: #0a0a1a;
+    color: #e8e8f0;
+    line-height: 1.8;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 60px 0 40px;
+    border-bottom: 2px solid #00d4ff33;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-size: 3em;
+    font-weight: 900;
+    background: linear-gradient(135deg, #00d4ff, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  header .sub {
+    font-size: 1.1em;
+    color: #999;
+    margin-top: 8px;
+  }
+  header .tag {
+    display: inline-block;
+    background: #00d4ff22;
+    color: #00d4ff;
+    border: 1px solid #00d4ff44;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-top: 12px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: #12122a;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    border-left: 4px solid #00d4ff;
+    transition: transform .2s;
+  }
+  .card:hover { transform: translateX(4px); }
+  .card h2 {
+    font-size: 1.4em;
+    color: #00d4ff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h2 .badge {
+    background: #ffd70022;
+    color: #ffd700;
+    font-size: 0.6em;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 400;
+  }
+  .card p, .card li { font-size: 0.95em; color: #ccc; margin-bottom: 6px; }
+  .card ul { padding-left: 20px; }
+  .card ul li::marker { color: #00d4ff; }
+  .card code {
+    background: #1a1a3a;
+    color: #ffd700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  /* ── Module Grid ── */
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .module-card {
+    background: #18183a;
+    border-radius: 10px;
+    padding: 20px;
+    border-top: 3px solid #ffd700;
+  }
+  .module-card h3 { color: #ffd700; font-size: 1.1em; margin-bottom: 8px; }
+  .module-card p { font-size: 0.88em; color: #aaa; }
+  .module-card .steps { margin-top: 10px; padding-left: 16px; }
+  .module-card .steps li { font-size: 0.85em; color: #888; margin-bottom: 4px; }
+  .module-card .steps li::marker { color: #ffd700; }
+  @media (max-width: 600px) { .module-grid { grid-template-columns: 1fr; } }
+
+  /* ── Tech Stack ── */
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .tech-tag {
+    background: #00d4ff11;
+    border: 1px solid #00d4ff33;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    color: #00d4ff;
+  }
+  .tech-tag strong { color: #fff; }
+
+  /* ── Table ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9em;
+  }
+  th {
+    background: #00d4ff22;
+    color: #00d4ff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #222244;
+    color: #bbb;
+  }
+  tr:hover td { background: #00d4ff08; }
+
+  /* ── Section titles ── */
+  .section-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 48px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ffd70044;
+    color: #fff;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #555;
+    font-size: 0.85em;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+  }
+
+  .emoji-big { font-size: 1.5em; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ══════ HEADER ══════ -->
+<header>
+  <h1>👺 愛打 MVP v1</h1>
+  <p class="sub">打者愛也 — 執行流程文件</p>
+  <span class="tag">⚡ 閃電 × 快閃軟件客</span>
+  <span class="tag" style="margin-left:8px">📅 2026-04-29</span>
+</header>
+
+<!-- ══════ OVERVIEW ══════ -->
+<div class="card">
+  <h2>📋 專案概覽</h2>
+  <p>將香港「打小人」傳統習俗轉化為 Web 社交娛樂平台 MVP。</p>
+  <p><strong>打者愛也</strong> — 兩個核心體驗：發洩式「打小人」＋ 暖心「愛的祝福」。</p>
+  <p><strong>開發模式：</strong> 短線快速迭代，MVP 先出核心功能，確認方向後再擴充。</p>
+</div>
+
+<!-- ══════ POINT 1: INFRASTRUCTURE ══════ -->
+<h2 class="section-title">🔧 1. 基礎建設</h2>
+
+<div class="card">
+  <h2>🌐 Web 介面 &amp; URL <span class="badge">Module 1</span></h2>
+  <table>
+    <tr><th>項目</th><th>內容</th></tr>
+    <tr><td>Hosting 平台</td><td><strong>Render.com</strong>（免費方案）</td></tr>
+    <tr><td>URL</td><td><code>https://ai-da.onrender.com</code></td></tr>
+    <tr><td>Deploy 方式</td><td>連接 GitHub repo，自動部署（git push 即更新）</td></tr>
+    <tr><td>成本</td><td>$0（免費 tier：每月 750 小時運作時間，足夠 MVP 使用）</td></tr>
+    <tr><td>Database</td><td><strong>PostgreSQL</strong>（Render 內建免費 1GB）</td></tr>
+    <tr><td>DB 名稱</td><td><code>ai_da_db</code></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>💻 開發語言 &amp; 主要 Libraries <span class="badge">Module 2</span></h2>
+  <p><strong>語言：</strong>Python 3.12+</p>
+  <h3 style="color:#ffd700;margin:12px 0 8px">後端</h3>
+  <div class="tech-row">
+    <span class="tech-tag"><strong>FastAPI</strong> — Web 框架 + REST API</span>
+    <span class="tech-tag"><strong>Uvicorn</strong> — ASGI Server</span>
+    <span class="tech-tag"><strong>WebSockets</strong> — 即時通訊</span>
+    <span class="tech-tag"><strong>SQLAlchemy</strong> — ORM</span>
+    <span class="tech-tag"><strong>Alembic</strong> — DB Migration</span>
+    <span class="tech-tag"><strong>asyncpg</strong> — PostgreSQL Driver</span>
+    <span class="tech-tag"><strong>Pillow</strong> — 圖片處理</span>
+    <span class="tech-tag"><strong>python-jose</strong> — JWT 認證</span>
+    <span class="tech-tag"><strong>passlib</strong> — 密碼雜湊</span>
+    <span class="tech-tag"><strong>uvicorn[standard]</strong> — Server</span>
+  </div>
+  <h3 style="color:#ffd700;margin:12px 0 8px">前端（Vanilla JS，無框架）</h3>
+  <div class="tech-row">
+    <span class="tech-tag"><strong>Canvas API</strong> — 遊戲渲染 &amp; 動畫</span>
+    <span class="tech-tag"><strong>CSS3</strong> — 介面樣式 &amp; 過渡動畫</span>
+    <span class="tech-tag"><strong>Fetch API</strong> — HTTP 請求</span>
+    <span class="tech-tag"><strong>WebSocket API</strong> — 即時 chat</span>
+    <span class="tech-tag"><strong>HTML5</strong> — 結構</span>
+  </div>
+  <p style="margin-top:12px;color:#888;font-size:0.85em">* MVP 階段刻意唔用前端框架，保持零依賴、快開發。</p>
+</div>
+
+<!-- ══════ POINT 3: MODULES ══════ -->
+<h2 class="section-title">🧩 2. MVP 功能模組</h2>
+
+<div class="module-grid">
+
+  <div class="module-card">
+    <h3>🔐 模組 1 — 用戶登記及登入</h3>
+    <p>支援 device session，同一裝置直接入主頁。</p>
+    <ul class="steps">
+      <li>註冊：username + password / email</li>
+      <li>登入：JWT token + cookie</li>
+      <li>Device 綁定：localStorage token 檢查</li>
+      <li>Token 未過期 → 直入主頁</li>
+      <li>Token 過期 / 新 device → 重新登入</li>
+    </ul>
+  </div>
+
+  <div class="module-card">
+    <h3>🎬 模組 2 — Splash 動畫</h3>
+    <p>入站即播「愛打」主題動畫，含習俗簡介。</p>
+    <ul class="steps">
+      <li>Canvas 動畫，約 4-6 秒</li>
+      <li>⚡ 閃電劃過 → 「愛打」Logo 浮現</li>
+      <li>紙人慢慢飄入畫面</li>
+      <li>畫面底部顯示習俗簡介文字</li>
+      <li>動畫結束 → fade out → 進入主頁</li>
+      <li>用戶可 click 「跳過」</li>
+    </ul>
+  </div>
+
+  <div class="module-card">
+    <h3>🏠 模組 3 — 主頁 Icon 導航</h3>
+    <p>大 icon 式導航，清楚易明。</p>
+    <ul class="steps">
+      <li>👺 打小人 — 進入遊戲</li>
+      <li>❤️ 愛的祝福 — 進入祝福模式</li>
+      <li>📖 習俗典故 — 打小人文化介紹</li>
+      <li>👤 個人檔案 — 賬號設定</li>
+      <li>⚙️ 設定 — 音效、語言等</li>
+    </ul>
+  </div>
+
+  <div class="module-card">
+    <h3>👺 模組 4a — 打小人遊戲</h3>
+    <p>由⚡閃電全權設計及執行。</p>
+    <ul class="steps">
+      <li>Canvas 射擊式拍打</li>
+      <li>紙人不規則移動（可設難度）</li>
+      <li>多款預設工具</li>
+      <li>計分系統 + 連擊加成</li>
+      <li>成功/失敗動畫反饋</li>
+      <li>限時模式（30秒）</li>
+    </ul>
+  </div>
+
+  <div class="module-card">
+    <h3>❤️ 模組 4b — 愛的祝福</h3>
+    <p>由⚡閃電全權設計及執行。</p>
+    <ul class="steps">
+      <li>揀選系統預設紙人</li>
+      <li>輸入祝福語 / 許願內容</li>
+      <li>溫柔動畫（發光、花瓣效果）</li>
+      <li>生成「祝福卡」可分享</li>
+      <li>每日一次免費祝福</li>
+    </ul>
+  </div>
+
+  <div class="module-card">
+    <h3>🖼️ 模組 5 — 預設紙人</h3>
+    <p>❌ 不做上傳功能，全部用系統預設。</p>
+    <ul class="steps">
+      <li>傳統紙人系列：節氣款、生肖款</li>
+      <li>漫畫紙人系列：趣味惡搞風</li>
+      <li>每款紙人有 2 種模式（打/祝福）</li>
+      <li>MVP 階段提供 6-8 款</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════ GAME DESIGN ══════ -->
+<h2 class="section-title">🎮 3. 打小人遊戲設計</h2>
+
+<div class="card">
+  <h2>⚡ 玩法設計</h2>
+  <table>
+    <tr><th>元素</th><th>設計</th></tr>
+    <tr><td>遊戲方式</td><td>Canvas 點擊拍打 — 玩家用滑鼠/手指點擊移動中的紙人</td></tr>
+    <tr><td>紙人動作</td><td>不規則飄移 + 左右閃避 + 加速逃走（難度越高越快）</td></tr>
+    <tr><td>工具選擇</td><td>3 款基本工具（拖鞋、棍棒、老虎鉗），點擊工具 icon 切換</td></tr>
+    <tr><td>計分規則</td><td>每次擊中 +10 分；連擊 x2/x3/x5 倍；尾段 bonus</td></tr>
+    <tr><td>時間限制</td><td>30 秒一局</td></tr>
+    <tr><td>難度設定</td><td>入場可選：簡單 / 普通 / 困難（影響紙人速度）</td></tr>
+    <tr><td>成功效果</td><td>紙人碎裂 + 彩帶/火光效果 + 高分結算畫面</td></tr>
+    <tr><td>失敗效果</td><td>紙人反擊畫面（鬼臉/嘲笑）+ 分數扣減 + 再接再厲</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>❤️ 愛的祝福設計</h2>
+  <table>
+    <tr><th>元素</th><th>設計</th></tr>
+    <tr><td>互動方式</td><td>揀紙人 → 輸入祝福文字 → 點擊「送祝福」</td></tr>
+    <tr><td>動畫效果</td><td>紙人緩緩發光 → 花瓣飄落 → 心型粒子上升</td></tr>
+    <tr><td>每日限制</td><td>每日 3 次免費祝福（之後可睇廣告換次數）</td></tr>
+    <tr><td>祝福卡</td><td>自動生成精美卡片，可下載／分享</td></tr>
+    <tr><td>許願池</td><td>系統收集用戶許願，精選顯示在公共許願牆</td></tr>
+  </table>
+</div>
+
+<!-- ══════ SPLASH ANIMATION ══════ -->
+<h2 class="section-title">🎬 4. Splash 動畫詳細設計</h2>
+
+<div class="card">
+  <h2>⚡ 「愛打」主題動畫</h2>
+  <table>
+    <tr><th>項目</th><th>內容</th></tr>
+    <tr><td>片長</td><td><strong>5 秒</strong></td></tr>
+    <tr><td>實現方式</td><td>HTML Canvas + JavaScript（零外部依賴）</td></tr>
+    <tr><td>場景 1</td><td>⚡ 閃電從左至右劃過深色夜空（0-1.5s）</td></tr>
+    <tr><td>場景 2</td><td>「愛打」Logo 由閃電火光中浮現（1.5-3s）<br>字體毛筆感覺 + 金色邊框 + 微微發光</td></tr>
+    <tr><td>場景 3</td><td>紙人剪影從上方緩緩飄入（3-4s）</td></tr>
+    <tr><td>場景 4</td><td>底部 fade in 習俗簡介文字（3.5-5s）<br>「打小人是香港非物質文化遺產，驚蟄傳統習俗。」</td></tr>
+    <tr><td>結束</td><td>畫面 fade out → 正式主頁 fade in（5s）</td></tr>
+    <tr><td>跳過</td><td>右下角「跳過 →」按鈕，click 即入主頁</td></tr>
+    <tr><td>重複</td><td>只在首次訪問或登出後顯示；session 內不再重播</td></tr>
+  </table>
+</div>
+
+<!-- ══════ DATABASE ══════ -->
+<h2 class="section-title">🗄️ 5. 資料庫設計</h2>
+
+<div class="card">
+  <h2>PostgreSQL — <code>ai_da_db</code></h2>
+  <table>
+    <tr><th>Table</th><th>用途</th><th>主要欄位</th></tr>
+    <tr><td><code>users</code></td><td>用戶資料</td><td>id, username, email, password_hash, created_at</td></tr>
+    <tr><td><code>game_sessions</code></td><td>遊戲記錄</td><td>id, user_id, score, tool, difficulty, result, played_at</td></tr>
+    <tr><td><code>blessings</code></td><td>祝福記錄</td><td>id, user_id, message, paper_doll_id, created_at</td></tr>
+    <tr><td><code>paper_dolls</code></td><td>預設紙人</td><td>id, name, type, image_path, is_active</td></tr>
+    <tr><td><code>tools</code></td><td>拍打工具</td><td>id, name, icon_path, power, range</td></tr>
+  </table>
+  <p style="margin-top:8px;color:#888;font-size:0.85em">* Render 免費 PostgreSQL 提供 1GB 儲存空間，足夠 MVP 使用。</p>
+</div>
+
+<!-- ══════ DEPLOYMENT ══════ -->
+<h2 class="section-title">🚀 6. 部署流程</h2>
+
+<div class="card">
+  <h2>Render.com 部署步驟</h2>
+  <ol style="padding-left:20px;color:#ccc">
+    <li>Git push code 到 <code>github.com/Ben-Yung/ai-da</code></li>
+    <li>Render 偵測到更新 → 自動 pull 最新 code</li>
+    <li>Render 執行 <code>pip install -r requirements.txt</code></li>
+    <li>Render 執行 <code>alembic upgrade head</code>（DB migration）</li>
+    <li>Render 啟動 <code>uvicorn main:app --host 0.0.0.0 --port 10000</code></li>
+    <li>網站上線 → <code>https://ai-da.onrender.com</code></li>
+  </ol>
+  <p style="margin-top:8px;color:#888;font-size:0.85em">整個流程自動化，一鍵 deploy。</p>
+</div>
+
+<!-- ══════ PROJECT STRUCTURE ══════ -->
+<h2 class="section-title">📁 7. 專案目錄結構</h2>
+
+<div class="card">
+  <pre style="background:#0a0a1a;padding:16px;border-radius:8px;overflow-x:auto;font-size:0.85em;color:#aaa;line-height:1.6">
+ai-da/
+├── main.py                 ← FastAPI 入口
+├── requirements.txt        ← Python 依賴
+├── alembic.ini             ← DB migration config
+├── app/
+│   ├── __init__.py
+│   ├── config.py           ← 設定（DB URL, JWT SECRET 等）
+│   ├── database.py         ← DB 連線
+│   ├── models.py           ← SQLAlchemy 模型
+│   ├── auth.py             ← 登入/註冊/ JWT 邏輯
+│   ├── websocket.py        ← WebSocket 處理
+│   └── routers/
+│       ├── users.py        ← 用戶 API
+│       ├── game.py         ← 遊戲 API
+│       └── blessings.py    ← 祝福 API
+├── static/
+│   ├── index.html          ← 主頁（含 splash 動畫）
+│   ├── style.css           ← 樣式
+│   ├── game.js             ← 打小人遊戲 Canvas
+│   ├── blessing.js         ← 祝福 Canvas
+│   ├── splash.js           ← Splash 動畫 Canvas
+│   └── assets/
+│       ├── dolls/          ← 預設紙人圖片
+│       └── tools/          ← 工具圖片
+└── migrations/             ← Alembic migrations
+  </pre>
+</div>
+
+<!-- ══════ REVENUE ══════ -->
+<h2 class="section-title">💰 8. MVP 收入模式</h2>
+
+<div class="card">
+  <p>MVP 階段以建立用戶基礎為主，輕量變現：</p>
+  <table>
+    <tr><th>模式</th><th>說明</th><th>階段</th></tr>
+    <tr><td>🎯 激勵廣告</td><td>睇 30s 廣告換額外遊戲次數 / 限定工具</td><td>MVP 即用</td></tr>
+    <tr><td>⭐ 自願贊助</td><td>Buy Me a Coffee 連結</td><td>MVP 即用</td></tr>
+    <tr><td>🔒 進階道具</td><td>限定工具/紙人收費</td><td>Phase 2</td></tr>
+    <tr><td>👑 會員計劃</td><td>去廣告 + 額外功能</td><td>Phase 3</td></tr>
+  </table>
+</div>
+
+<!-- ══════ SCHEDULE ══════ -->
+<h2 class="section-title">📅 9. 開發時程</h2>
+
+<div class="card">
+  <table>
+    <tr><th>階段</th><th>內容</th><th>預估時間</th></tr>
+    <tr><td>🔧 Setup</td><td>專案初始化、DB schema、部署設定</td><td>1-2 日</td></tr>
+    <tr><td>🔐 Auth</td><td>註冊/登入、JWT、device session</td><td>1-2 日</td></tr>
+    <tr><td>🎬 Splash</td><td>Canvas 動畫、習俗簡介</td><td>1 日</td></tr>
+    <tr><td>🏠 主頁</td><td>Icon 導航、UI 框架</td><td>1 日</td></tr>
+    <tr><td>👺 打小人</td><td>遊戲邏輯、Canvas 渲染、計分</td><td>3-4 日</td></tr>
+    <tr><td>❤️ 祝福</td><td>祝福介面、動畫、祝福卡生成</td><td>2 日</td></tr>
+    <tr><td>🧪 測試/修正</td><td>整合測試、Bug fix、UI 打磨</td><td>2 日</td></tr>
+    <tr><td><strong>總計</strong></td><td></td><td><strong>~11-14 日</strong></td></tr>
+  </table>
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  ⚡ 由 閃電 為 快閃軟件客 製作<br>
+  <span style="color:#444">文件版本 v1.0 · GitHub: github.com/Ben-Yung/ai-da</span>
+</footer>
+
+</div>
+</body>
+</html>
