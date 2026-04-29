@@ -6,3 +6,11 @@ dist/
 build/
 .openclaw/
 state/
+memory/
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+make_ppt*.py
