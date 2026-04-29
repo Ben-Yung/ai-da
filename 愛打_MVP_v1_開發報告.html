@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愛打 MVP v1 — 開發完成報告</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans TC',sans-serif;background:#0a0a1a;color:#e8e8f0;line-height:1.8}
+  .container{max-width:960px;margin:0 auto;padding:40px 24px}
+  header{text-align:center;padding:60px 0 40px;border-bottom:2px solid #00d4ff33;margin-bottom:40px}
+  header h1{font-size:3em;font-weight:900;background:linear-gradient(135deg,#00d4ff,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  header .sub{font-size:1.1em;color:#999;margin-top:8px}
+  header .tag{display:inline-block;background:#00d4ff22;color:#00d4ff;border:1px solid #00d4ff44;padding:4px 16px;border-radius:20px;font-size:0.85em;margin-top:12px}
+  .card{background:#12122a;border-radius:12px;padding:28px;margin-bottom:24px;border-left:4px solid #00d4ff}
+  .card h2{font-size:1.4em;color:#00d4ff;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .card p,.card li{font-size:0.95em;color:#ccc;margin-bottom:6px}
+  .card ul{padding-left:20px}
+  .card ul li::marker{color:#00d4ff}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.9em}
+  th{background:#00d4ff22;color:#00d4ff;padding:10px 12px;text-align:left;font-weight:700}
+  td{padding:10px 12px;border-bottom:1px solid #222244;color:#bbb}
+  tr:hover td{background:#00d4ff08}
+  .section-title{font-size:1.8em;font-weight:700;margin:48px 0 20px;padding-bottom:8px;border-bottom:2px solid #ffd70044;color:#fff}
+  .status-ok{color:#00ff88;font-weight:700}
+  .time{color:#ffd700;font-weight:700}
+  .highlight{background:#ffd70008;border:1px solid #ffd70033;border-radius:12px;padding:20px 24px;margin-bottom:24px}
+  footer{text-align:center;padding:40px 0;color:#555;font-size:0.85em;border-top:1px solid #222;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>👺 愛打 MVP v1</h1>
+  <p class="sub">開發完成報告 — 2026-04-29</p>
+  <span class="tag">⚡ 閃電 × 快閃軟件客</span>
+  <span class="tag" style="margin-left:8px">⏱️ 開發時間：~45 分鐘</span>
+</header>
+
+<!-- Summary -->
+<div class="highlight">
+  <h3 style="color:#ffd700;font-size:1.1em;margin-bottom:8px">📋 總結</h3>
+  <p style="color:#ddd;font-size:0.95em">MVP v1 已完成開發，共 <strong>43 個檔案</strong>，全面覆蓋 9 大功能模組。已 push 至 GitHub repo <code>github.com/Ben-Yung/ai-da</code>。</p>
+</div>
+
+<!-- Time Tracking -->
+<h2 class="section-title">⏱️ 開發時間記錄</h2>
+
+<div class="card">
+  <table>
+    <tr><th>Task</th><th>功能</th><th>實際時間</th><th>狀態</th></tr>
+    <tr><td>1</td><td>Project setup + config + database</td><td class="time">~8m</td><td class="status-ok">✅</td></tr>
+    <tr><td>2</td><td>User model + auth (JWT + bcrypt)</td><td class="time">~7m</td><td class="status-ok">✅</td></tr>
+    <tr><td>3</td><td>Backend routers (users, game, auth)</td><td class="time">~5m</td><td class="status-ok">✅</td></tr>
+    <tr><td>4</td><td>Splash animation (~12s Canvas)</td><td class="time">~5m</td><td class="status-ok">✅</td></tr>
+    <tr><td>5</td><td>Home page + icon navigation + CSS</td><td class="time">~8m</td><td class="status-ok">✅</td></tr>
+    <tr><td>6</td><td>Game engine + hit detection + combo</td><td class="time">~5m</td><td class="status-ok">✅</td></tr>
+    <tr><td>7</td><td>Audio system (Web Audio API)</td><td class="time">~3m</td><td class="status-ok">✅</td></tr>
+    <tr><td>8</td><td>Integration + testing + polish</td><td class="time">~4m</td><td class="status-ok">✅</td></tr>
+    <tr><td style="font-weight:700;color:#ffd700">總計</td><td></td><td class="time" style="font-size:1.1em">~45 分鐘</td><td class="status-ok">✅</td></tr>
+  </table>
+</div>
+
+<!-- Feature Checklist -->
+<h2 class="section-title">✅ 功能完成清單</h2>
+
+<div class="card">
+  <table>
+    <tr><th>#</th><th>功能</th><th>狀態</th><th>備註</th></tr>
+    <tr><td>1</td><td>用戶登記及登入</td><td class="status-ok">✅</td><td>JWT + bcrypt，7日 token</td></tr>
+    <tr><td>2</td><td>Splash 動畫 ~12 秒</td><td class="status-ok">✅</td><td>5 場景：⚡→Logo→紙人→口訣→簡介，可跳過</td></tr>
+    <tr><td>3</td><td>主頁 Icon 導航</td><td class="status-ok">✅</td><td>5 大 icon：打小人·抱抱·典故·檔案·設定</td></tr>
+    <tr><td>4</td><td>打小人遊戲</td><td class="status-ok">✅</td><td>Canvas 拍打 + 口訣同步 + 重低音 beats</td></tr>
+    <tr><td>5</td><td>愛的抱抱</td><td class="status-ok">✅</td><td>同一引擎換 theme + 祝福口訣 + 柔和音效</td></tr>
+    <tr><td>6</td><td>紙人命名系統</td><td class="status-ok">✅</td><td>打/抱前輸入稱呼，記存 DB</td></tr>
+    <tr><td>7</td><td>音樂系統</td><td class="status-ok">✅</td><td>Web Audio API，可獨立開關音效/音樂</td></tr>
+    <tr><td>8</td><td>8 款預設紙人</td><td class="status-ok">✅</td><td>JSON config（傳統/鬼怪/青蛙/惡魔/天使/貓/兔/星星）</td></tr>
+    <tr><td>9</td><td>工具系統</td><td class="status-ok">✅</td><td>打：拖鞋/棍棒/老虎鉗/香爐；抱：羽毛/唇印/玫瑰</td></tr>
+    <tr><td>10</td><td>DB migration</td><td class="status-ok">✅</td><td>Alembic migration 已準備</td></tr>
+    <tr><td>11</td><td>PWA manifest</td><td class="status-ok">✅</td><td>可安裝到手機桌面</td></tr>
+    <tr><td>12</td><td>Deploy 準備</td><td class="status-ok">✅</td><td>Render.com 可直接 deploy</td></tr>
+  </table>
+</div>
+
+<!-- File Structure -->
+<h2 class="section-title">📁 專案結構</h2>
+<div class="card">
+<pre style="background:#0a0a1a;padding:16px;border-radius:8px;overflow-x:auto;font-size:0.85em;color:#aaa;line-height:1.6">
+ai-da/
+├── README.md
+├── backend/                    ← FastAPI 後端
+│   ├── app/main.py            ← 入口
+│   ├── app/auth.py            ← JWT + bcrypt
+│   ├── app/config.py          ← 設定
+│   ├── app/database.py        ← DB 連線
+│   ├── app/models.py          ← SQLAlchemy 模型
+│   ├── app/schemas.py         ← Pydantic schema
+│   ├── app/routers/           ← API 路由
+│   ├── app/utils/tools.py     ← 工具資料
+│   ├── requirements.txt
+│   └── alembic/               ← DB migration
+├── frontend/                   ← 前端 SPA
+│   ├── index.html             ← 主頁（5 icon 導航）
+│   ├── css/                   ← 樣式
+│   ├── js/
+│   │   ├── app.js             ← SPA 路由
+│   │   ├── splash.js          ← ~12s 動畫
+│   │   ├── game.js            ← 遊戲引擎
+│   │   └── audio.js           ← Web Audio API
+│   └── manifest.json          ← PWA
+└── docs/                       ← 規劃文件
+</pre>
+</div>
+
+<!-- Git History -->
+<h2 class="section-title">📜 Git 提交記錄</h2>
+<div class="card">
+  <table>
+    <tr><th>Commit</th><th>訊息</th></tr>
+    <tr><td>18eace5</td><td>📝 Update README & roadmap: mark MVP v1 as complete</td></tr>
+    <tr><td>b9c2090</td><td>🎮 MVP v1: full backend + frontend with game engine</td></tr>
+    <tr><td>67b7078</td><td>📄 v3 final: add naming system (doll_names table)</td></tr>
+    <tr><td>b616a24</td><td>📄 v2 update: rhyme system, music, hug mode, splash timing</td></tr>
+    <tr><td>12fefc8</td><td>📄 Add MVP v1 execution plan documents</td></tr>
+    <tr><td>3148704</td><td>🧹 Remove old file duplicates, update gitignore</td></tr>
+    <tr><td>07eb38c</td><td>🏷️ Rename project to 愛打 (Beat with Love)</td></tr>
+    <tr><td>07c53fe</td><td>🎉 Initial commit: project planning docs and PPT</td></tr>
+  </table>
+</div>
+
+<!-- Next Steps -->
+<h2 class="section-title">🚀 下一步</h2>
+<div class="card">
+  <table>
+    <tr><th>選項</th><th>內容</th></tr>
+    <tr><td>🌐 Deploy to Render</td><td>幫你 setup hosting，俾條真正 URL 你用</td></tr>
+    <tr><td>🔧 Review & Iterate</td><td>你睇 code，有嘢想改即改</td></tr>
+    <tr><td>📱 其他</td><td>你想點就點</td></tr>
+  </table>
+</div>
+
+<footer>
+  ⚡ 愛打 MVP v1 — 開發完成報告 · 2026-04-29<br>
+  <span style="color:#444">閃電 × 快閃軟件客 · GitHub: github.com/Ben-Yung/ai-da</span>
+</footer>
+
+</div>
+</body>
+</html>
