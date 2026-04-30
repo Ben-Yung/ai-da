@@ -65,8 +65,7 @@ const app = {
     // Game result buttons
     document.getElementById('result-replay').addEventListener('click', () => {
       document.getElementById('game-result').classList.add('hidden');
-      document.getElementById('game-prescreen').classList.remove('hidden');
-      this.showScreen('game-prescreen');
+      this._startPreScreen(this.gameMode);
     });
     document.getElementById('result-home').addEventListener('click', () => {
       this.showScreen('home');
@@ -236,6 +235,7 @@ const app = {
     const selectedTool = document.querySelector('.tool-option.selected');
     const selectedDiff = document.querySelector('.diff-btn.active');
 
+    const dollId = selectedDoll ? selectedDoll.dataset.dollId : 'traditional';
     const dollName = document.getElementById('doll-name-input').value.trim() || '小人';
 
     // Save doll name to backend
@@ -244,7 +244,7 @@ const app = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          doll_id: selectedDoll.dataset.dollId,
+          doll_id: dollId,
           custom_name: dollName,
         }),
       }).catch(() => {});
@@ -258,6 +258,7 @@ const app = {
     this.gameEngine.start(
       this.gameMode,
       dollName,
+      dollId,
       selectedTool ? selectedTool.dataset.toolId : 'slipper',
       selectedDiff ? selectedDiff.dataset.diff : 'easy',
     );

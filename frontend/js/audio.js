@@ -33,9 +33,10 @@ class AudioManager {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(120 - intensity * 40, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.15);
-    gain.gain.setValueAtTime(intensity * 0.4, this.ctx.currentTime);
+    // 重低實：80-120Hz, gain 0.4-0.6, duration 0.2s
+    osc.frequency.setValueAtTime(80 + intensity * 40, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(60, this.ctx.currentTime + 0.15);
+    gain.gain.setValueAtTime(0.4 + intensity * 0.2, this.ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
     osc.connect(gain);
     gain.connect(this.ctx.destination);
@@ -50,15 +51,15 @@ class AudioManager {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = 'triangle';
-    const baseFreq = 600 + intensity * 400;
-    osc.frequency.setValueAtTime(baseFreq, this.ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, this.ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(intensity * 0.2, this.ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.4);
+    // 溫柔：600-900Hz, gain 0.15-0.25, duration 0.35s
+    osc.frequency.setValueAtTime(600 + intensity * 300, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(900 + intensity * 200, this.ctx.currentTime + 0.15);
+    gain.gain.setValueAtTime(0.15 + intensity * 0.1, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
     osc.connect(gain);
     gain.connect(this.ctx.destination);
     osc.start();
-    osc.stop(this.ctx.currentTime + 0.4);
+    osc.stop(this.ctx.currentTime + 0.35);
   }
 
   /** Miss sound */
@@ -133,6 +134,19 @@ class AudioManager {
       osc.start();
       osc.stop(this.ctx.currentTime + 0.1);
     }, interval);
+  }
+
+  /** Speak a rhyme using Web Speech API */
+  speak(text) {
+    if (!this.soundEnabled) return;
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'zh-HK';
+    utterance.rate = 0.9;
+    utterance.pitch = 1.0;
+    utterance.volume = 0.7;
+    speechSynthesis.speak(utterance);
   }
 
   stopBeat() {

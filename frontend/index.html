@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>愛打 — Beat with Love</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/splash.css">
+  <link rel="stylesheet" href="css/game.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <!-- ── Splash Screen ── -->
+  <div id="splash-screen" class="screen">
+    <canvas id="splash-canvas"></canvas>
+  </div>
+
+  <!-- ── Auth Screen ── -->
+  <div id="auth-screen" class="screen hidden">
+    <div class="auth-container">
+      <div class="auth-logo">👺</div>
+      <h1 class="auth-title">愛打</h1>
+      <p class="auth-subtitle">打者愛也 — 有打有愛</p>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">登入</button>
+        <button class="auth-tab" data-tab="register">註冊</button>
+      </div>
+      <form id="login-form" class="auth-form">
+        <input type="text" id="login-username" placeholder="用戶名" required>
+        <input type="password" id="login-password" placeholder="密碼" required>
+        <button type="submit" class="btn btn-primary">登入</button>
+        <p class="auth-error" id="login-error"></p>
+      </form>
+      <form id="register-form" class="auth-form hidden">
+        <input type="text" id="register-username" placeholder="用戶名" required>
+        <input type="password" id="register-password" placeholder="密碼（最少4位）" required>
+        <button type="submit" class="btn btn-primary">註冊</button>
+        <p class="auth-error" id="register-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── Main Screen (Home) ── -->
+  <div id="home-screen" class="screen hidden">
+    <div class="home-bg"></div>
+    <div class="home-inner">
+      <div class="home-logo">
+        <div class="home-logo-icon">👺</div>
+        <div class="home-logo-text">愛打</div>
+        <div class="home-logo-sub">打者愛也 — 有打有愛</div>
+      </div>
+      <div class="home-grid">
+        <div class="home-card" data-page="beat">
+          <div class="card-icon">👊</div>
+          <div class="card-label">打小人</div>
+        </div>
+        <div class="home-card" data-page="hug">
+          <div class="card-icon">💕</div>
+          <div class="card-label">愛的抱抱</div>
+        </div>
+        <div class="home-card" data-page="history">
+          <div class="card-icon">📖</div>
+          <div class="card-label">典故</div>
+        </div>
+        <div class="home-card" data-page="records">
+          <div class="card-icon">📊</div>
+          <div class="card-label">檔案</div>
+        </div>
+        <div class="home-card" data-page="settings">
+          <div class="card-icon">⚙️</div>
+          <div class="card-label">設定</div>
+        </div>
+      </div>
+      <div class="home-footer">
+        <button id="btn-logout" class="btn-icon" title="登出">🚪</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Game Pre-Screen (doll naming + tool selection) ── -->
+  <div id="game-prescreen-screen" class="screen hidden">
+    <header class="top-bar">
+      <button class="btn-back" data-back="home">← 返回</button>
+      <h1 class="top-title" id="prescreen-title">打小人</h1>
+    </header>
+    <div class="prescreen-content">
+      <div class="prescreen-section">
+        <h3>選擇紙人</h3>
+        <div class="doll-grid" id="doll-select"></div>
+      </div>
+      <div class="prescreen-section">
+        <h3>稱呼佢</h3>
+        <input type="text" id="doll-name-input" placeholder="輸入稱呼..." maxlength="20">
+      </div>
+      <div class="prescreen-section">
+        <h3>選擇工具</h3>
+        <div class="tool-grid" id="tool-select"></div>
+      </div>
+      <div class="prescreen-section">
+        <h3>難度</h3>
+        <div class="difficulty-select">
+          <button class="diff-btn active" data-diff="easy">😊 簡單</button>
+          <button class="diff-btn" data-diff="medium">😐 中等</button>
+          <button class="diff-btn" data-diff="hard">😈 困難</button>
+        </div>
+      </div>
+      <button id="btn-start-game" class="btn btn-primary btn-large">開始！</button>
+    </div>
+  </div>
+
+  <!-- ── Game Screen ── -->
+  <div id="game-screen" class="screen hidden">
+    <canvas id="game-canvas"></canvas>
+    <div id="game-hud">
+      <div class="hud-row">
+        <span id="hud-score">0</span>
+        <span id="hud-timer">30</span>
+        <span id="hud-combo">0x</span>
+      </div>
+      <div id="hud-rhyme" class="hud-rhyme"></div>
+    </div>
+    <div id="game-result" class="hidden">
+      <div class="result-box">
+        <div class="result-icon" id="result-icon">🎉</div>
+        <h2 id="result-title">完勝！</h2>
+        <p class="result-score">得分：<span id="result-score">0</span></p>
+        <p class="result-combo">最高連擊：<span id="result-combo">0</span>x</p>
+        <div class="result-btns">
+          <button id="result-replay" class="btn btn-primary">再打一次</button>
+          <button id="result-home" class="btn btn-secondary">回首頁</button>
+        </div>
+      </div>
+    </div>
+    <button id="btn-pause" class="btn-icon pause-btn">⏸️</button>
+  </div>
+
+  <!-- ── History Screen ── -->
+  <div id="history-screen" class="screen hidden">
+    <header class="top-bar">
+      <button class="btn-back" data-back="home">← 返回</button>
+      <h1 class="top-title">📖 典故</h1>
+    </header>
+    <div class="scroll-content">
+      <div class="history-card">
+        <h3>打小人的起源</h3>
+        <p>「打小人」是香港的非物質文化遺產，傳統於驚蟄（每年三月五日前後）舉行。人們透過拍打紙人來驅散霉運、鎮壓小人，最具代表性的是鵝頸橋橋底的打小人攤檔。</p>
+      </div>
+      <div class="history-card">
+        <h3>驚蟄與打小人</h3>
+        <p>驚蟄是二十四節氣之一，代表春雷初響、萬物甦醒。傳統認為這天蛇蟲鼠蟻開始活動，同樣「小人」也會活躍起來，所以要在這一天「打小人」以保平安。</p>
+      </div>
+      <div class="history-card">
+        <h3>儀式流程</h3>
+        <p>傳統打小人共有五個步驟：<br>
+        ① 請神 — 供奉觀音、招財等神靈<br>
+        ② 稟告 — 向神靈說明要打的小人資料<br>
+        ③ 打小人 — 用拖鞋拍打紙人<br>
+        ④ 化解 — 用豬肉、雞蛋化解是非<br>
+        ⑤ 祈福 — 祈求好運降臨</p>
+      </div>
+      <div class="history-card">
+        <h3>現代意義</h3>
+        <p>時至今日，打小人已經演變成一種文化娛樂活動。除了發洩情緒，更多人將其視為一種祈求好運、驅走霉運的正面儀式。我們的「愛的抱抱」模式正是將這種正向能量發揚光大。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Records Screen ── -->
+  <div id="records-screen" class="screen hidden">
+    <header class="top-bar">
+      <button class="btn-back" data-back="home">← 返回</button>
+      <h1 class="top-title">📊 檔案</h1>
+    </header>
+    <div class="scroll-content">
+      <div class="record-tabs">
+        <button class="record-tab active" data-tab="beat">打小人戰績</button>
+        <button class="record-tab" data-tab="hug">抱抱記錄</button>
+      </div>
+      <div class="leaderboard-section">
+        <h3>🏆 排行榜</h3>
+        <div id="leaderboard-list">載入中...</div>
+      </div>
+      <div class="my-sessions-section">
+        <h3>📋 我的記錄</h3>
+        <div id="my-sessions-list">載入中...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Settings Screen ── -->
+  <div id="settings-screen" class="screen hidden">
+    <header class="top-bar">
+      <button class="btn-back" data-back="home">← 返回</button>
+      <h1 class="top-title">⚙️ 設定</h1>
+    </header>
+    <div class="scroll-content">
+      <div class="setting-item">
+        <label>音效</label>
+        <label class="toggle">
+          <input type="checkbox" id="setting-sound" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>音樂</label>
+        <label class="toggle">
+          <input type="checkbox" id="setting-music" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="setting-item">
+        <label>震動</label>
+        <label class="toggle">
+          <input type="checkbox" id="setting-vibrate" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <hr>
+      <div class="setting-item">
+        <span id="setting-username-display"></span>
+      </div>
+      <button id="btn-settings-logout" class="btn btn-secondary">登出</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -30,9 +30,15 @@ app.include_router(game.router)
 app.include_router(users.router)
 
 # ── Static frontend ──
-frontend_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
+script_dir = os.path.dirname(os.path.abspath(__file__))  # backend/app/
+backend_dir = os.path.dirname(script_dir)                  # backend/
+workspace_dir = os.path.dirname(backend_dir)                # workspace/
+frontend_dir = os.path.join(workspace_dir, "frontend")
+
 if os.path.isdir(frontend_dir):
     app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+else:
+    print(f"WARNING: frontend not found at {frontend_dir}")
 
 
 @app.get("/api/health")
