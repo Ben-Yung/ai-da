@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愛打 MVP v1 — 修改需求文件</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Noto Sans HK', 'PingFang HK', sans-serif;
+    background: #0d0d1a;
+    color: #e8e8f0;
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 28px;
+    background: linear-gradient(135deg, #ff4444, #ff9900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .subtitle { color: #8888aa; margin-bottom: 32px; font-size: 14px; }
+  .meta {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding: 16px; background: #1a1a2e; border-radius: 12px;
+    margin-bottom: 32px; font-size: 14px; color: #aaaacc;
+  }
+  .meta span { display: flex; align-items: center; gap: 6px; }
+  .section {
+    background: #1a1a2e; border-radius: 12px; padding: 24px;
+    margin-bottom: 20px; border-left: 3px solid #ff4444;
+  }
+  .section.hug { border-left-color: #ff69b4; }
+  .section.ui { border-left-color: #ffcc00; }
+  .section.audio { border-left-color: #66ccff; }
+  .h2 {
+    font-size: 18px; font-weight: 700; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .h2 .badge {
+    font-size: 11px; padding: 2px 8px; border-radius: 10px;
+    font-weight: 600;
+  }
+  .badge-high { background: #ff4444; color: white; }
+  .badge-med { background: #ff9900; color: white; }
+  .badge-low { background: #4488cc; color: white; }
+  .desc { color: #cccce0; font-size: 14px; line-height: 1.7; margin-bottom: 12px; }
+  .detail {
+    background: #252540; border-radius: 8px; padding: 14px;
+    font-size: 13px; color: #aaaacc; line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .detail strong { color: #e8e8f0; }
+  .detail code {
+    background: #0d0d1a; padding: 1px 6px; border-radius: 4px;
+    font-size: 12px; color: #ffcc00;
+  }
+  .ref {
+    margin-top: 32px; padding: 20px; background: #1a1a2e;
+    border-radius: 12px; border: 1px solid #333355;
+  }
+  .ref h3 { font-size: 16px; margin-bottom: 8px; color: #ffcc00; }
+  .ref p { font-size: 13px; color: #8888aa; line-height: 1.6; }
+  ul { padding-left: 18px; font-size: 13px; color: #aaaacc; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<h1>👺 愛打 — 修改需求文件</h1>
+<p class="subtitle">Phase I MVP v1 檢討後 required changes</p>
+
+<div class="meta">
+  <span>📅 2026-04-30</span>
+  <span>⚡ 閃電 × 快閃軟件客</span>
+  <span>📄 MVP v1 Post-Review</span>
+</div>
+
+<!-- ──── 1 ──── -->
+<div class="section ui">
+  <div class="h2">
+    <span>1. 主畫面 Redesign</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    參考「金猴爺老虎機」風格，全面 redesign home screen。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • 加 logo（👺 emoji + 毛筆風「愛打」字樣）<br>
+    • Background 用豐富 gradient / 傳統 pattern，唔好淨係黑色<br>
+    • 5 張 card 改 3+2 排列，唔好迫到 full screen<br>
+    • 顏色豐富：金色、紅色、暗紋裝飾<br>
+    • 參考對象：金猴爺老虎機 — 街機捕魚遊戲（色彩、佈局、氛圍）
+  </div>
+</div>
+
+<!-- ──── 2 ──── -->
+<div class="section audio">
+  <div class="h2">
+    <span>2. 口訣語音朗讀</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    口訣顯示文字時同時用語音讀出。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • 用 Web Speech API 嘅 TTS<br>
+    • Lang = <code>zh-HK</code>（粵語）<br>
+    • 每句口訣顯示時自動朗讀<br>
+    • 音效開關可控制
+  </div>
+</div>
+
+<!-- ──── 3 ──── -->
+<div class="section">
+  <div class="h2">
+    <span>3. 揀紙人要用揀嗰款</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    目前紙人係 random 出，應該用 prescreen 揀嘅款式。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • <code>_startGame()</code> 傳 dollId 入 <code>gameEngine.start()</code><br>
+    • <code>_spawnDoll()</code> 改用傳入嘅 dollId 取代 random<br>
+    • 紙人顏色/形狀跟所選款式
+  </div>
+</div>
+
+<!-- ──── 4 ──── -->
+<div class="section">
+  <div class="h2">
+    <span>4. 道具視覺化</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    揀咗道具（拖鞋/棍棒/老虎鉗/香爐）要顯示喺 cursor/finger 位置。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • Canvas 上畫道具 emoji icon 跟住手指/鼠標<br>
+    • 道具 icon 位於 cursor 上方（約 36px offset）<br>
+    • 大小約 28-32px<br>
+    • 冇郁動時維持顯示
+  </div>
+</div>
+
+<!-- ──── 5 ──── -->
+<div class="section">
+  <div class="h2">
+    <span>5. 打中紙人要消失 + 碎裂動畫</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    目前打中紙人只係改變移動方向，應該要碎裂消失然後重生。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • 打中 → 碎裂動畫（紙人縮小 + fade out）<br>
+    • 動畫時長約 400ms（easeOut）<br>
+    • 完成後 spawn 新紙人<br>
+    • 狀態機：<code>alive → dying → dead → spawn</code>
+  </div>
+</div>
+
+<!-- ──── 6 ──── -->
+<div class="section">
+  <div class="h2">
+    <span>6. 紙人名稱顯示喺身體上</span>
+    <span class="badge badge-high">P0</span>
+  </div>
+  <div class="desc">
+    揀紙人時輸入名稱，名稱長註顯示喺紙人身體中央。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • Prescreen 揀紙人後輸入稱呼<br>
+    • 名稱繪製喺紙人身體中央（白色字 + shadow）<br>
+    • 字體大小隨紙人縮放自動調整<br>
+    • 唔好放喺紙人下面
+  </div>
+</div>
+
+<!-- ──── 7 ──── -->
+<div class="section audio">
+  <div class="h2">
+    <span>7. 拍打聲區分</span>
+    <span class="badge badge-med">P1</span>
+  </div>
+  <div class="desc">
+    打小人 vs 愛的抱抱 嘅拍打聲要明顯不同。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • 打小人：重低音 thump（100-150Hz），短促有力<br>
+    • 愛的抱抱：溫柔 chime（600-800Hz），soft triangle wave<br>
+    • 強度隨 combo 遞增
+  </div>
+</div>
+
+<!-- ──── 8 ──── -->
+<div class="section">
+  <div class="h2">
+    <span>8. 道具動作差異化</span>
+    <span class="badge badge-med">P1</span>
+  </div>
+  <div class="desc">
+    唔同道具要有唔同嘅打擊效果同動畫。
+  </div>
+  <div class="detail">
+    <strong>要求：</strong><br>
+    • 拖鞋：扇形拍打範圍，碎片飛散<br>
+    • 棍棒：直線揮擊，長條形 hit 效果<br>
+    • 老虎鉗：精準點擊，集中 spark<br>
+    • 香爐：圓形擴散火焰效果<br>
+    • 羽毛/唇印/玫瑰（抱抱）：各自溫柔特效
+  </div>
+</div>
+
+<!-- ──── Reference ──── -->
+<div class="ref">
+  <h3>🎯 視覺參考</h3>
+  <p>
+    <strong>金猴爺老虎機 — 街機捕魚遊戲</strong><br>
+    整體風格：色彩豐富、金色紅色調、傳統中國 decorative 元素、畫面熱鬧有質感、icon 清晰大膽。
+  </p>
+  <ul>
+    <li>主畫面：有質感嘅 logo + 明亮背景 + 明確嘅功能按鈕</li>
+    <li>遊戲畫面：暗底但唔係死黑，有 gradient 同裝飾</li>
+    <li>動畫效果：豐富但唔過度，每個互動都有 visual feedback</li>
+  </ul>
+</div>
+
+</body>
+</html>
